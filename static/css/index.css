@@ -1,0 +1,124 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+/*#region navbar*/
+.navbar {
+    width: 100%;
+    height: 8%;
+    
+    display: flex;
+    flex-direction: row;
+}
+
+.search-bar-container {
+    width: 50%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar-form button {
+    width: 7%;
+    height: 45%;
+    border: 1px solid black;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: rgb(91, 91, 91) 1px solid;
+    border-left: none;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.search-bar-form button img {
+    height: 80%;
+    filter: invert(1);
+}
+
+.search-bar {
+    width: 60%;
+    height: 40%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: rgb(91, 91, 91) 1px solid;
+}
+
+.search-bar:focus {
+    outline: none;
+    border: 1px solid blue;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.nav-right, .nav-left {
+    width: 30%;
+    height: 100%;
+    /* background-color: yellow; */
+}
+
+.nav-right {
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: right;
+}
+
+.nav-right img {
+    /* width: 20%; */
+    height: 70%;
+    border-radius: 50px;
+    margin: 5px;
+}
+
+.nav-right p {
+    margin-right: 20%;
+}
+/*#endregion navbar*/
+
+
+.main {
+    margin-bottom: 0;
+    width: 100%;
+    height: 92%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container {
+    /* background-color: green; */
+    width: 15%;
+}
+
+/*#region posts-container*/
+.posts-container {
+    width: 85%;
+    height: 100%;
+    /* background-color: greenyellow; */
+    display: flex;
+    flex-direction: column;
+}
+
+.add-post{
+    width: 80%;
+    height: 30%;
+    /* background-color: orange; */
+}
+
+.posts-list {
+    width: 80%;
+    height: 70%;
+    /* background-color: orange; */
+}
+/*#endregion posts-container*/
