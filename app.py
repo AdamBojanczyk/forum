@@ -38,14 +38,7 @@ def register():
         email = request.form['email']
         password = request.form['password']
         newUser = User(name = name, lastname = lastname, username = username, email = email, password = password)
-
-        # db.session.add(newUser)
-        # db.session.commit()
-            
-        # return redirect('index.html')
-
-
-
+        
         try:
             db.session.add(newUser)
             db.session.commit()
