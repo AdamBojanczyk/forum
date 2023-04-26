@@ -7,13 +7,15 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     name = db.Column(db.String(30), nullable = False)
-    lastName = db.Column(db.String(30), nullable = False)
+    lastname = db.Column(db.String(30), nullable = False)
     username = db.Column(db.String(30), nullable = False)
-    dateOfBirth = db.Column(db.Date, nullable = False)
     email = db.Column(db.String(30), nullable = False)
     password = db.Column(db.String(30), nullable = False)
+
+    def __repr__(self):
+        return f'<User {self.id}, {self.name}, {self.lastName}, {self.username}, {self.email}, {self.password}>'
 
 @app.route("/")
 def index():
@@ -27,25 +29,38 @@ def login():
 
     return render_template('login.html')
 
-@app.route("/register")
+@app.route("/register", methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
         name = request.form['name']
-        lastName = request.form['lastName']
+        lastname = request.form['lastName']
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
-        newUser = User(name = name, lastName = lastName, username = username, email = email, password = password)
+        newUser = User(name = name, lastname = lastname, username = username, email = email, password = password)
+
+        # db.session.add(newUser)
+        # db.session.commit()
+            
+        # return redirect('index.html')
+
+
 
         try:
             db.session.add(newUser)
             db.session.commit()
-            return redirect('index.html')
+            
+            return render_template('index.html')
         except:
             return 'There was an issue registering you'
     else:
         return render_template('register.html')
 
+
+@app.route("/users")
+def users():
+    users = User.query.all()
+    return render_template('users.html', users=users)
 
 if __name__ == '__main__':
     with app.app_context():
