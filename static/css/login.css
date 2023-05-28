@@ -25,4 +25,5 @@ input[type="submit"] {
     background-color: blue;
     color: white;
     height: 5%;
+    margin-bottom: 15px;
 }

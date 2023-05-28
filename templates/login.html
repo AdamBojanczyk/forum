@@ -7,8 +7,15 @@
 {% block body %}
     <form action="" method="post" class="form">
         <h1>Zaloguj się</h1>
-        <input type="text" name="username" placeholder="username">
+        <!-- <input type="text" name="username" placeholder="username">
         <input type="password" name="password" placeholder="password">
-        <input type="submit" value="Zaloguj się">
+        <input type="submit" value="Zaloguj się"> -->
+
+        {{ form.hidden_tag() }}
+        {{ form.username }}
+        {{ form.password }}
+        {{ form.submit }}
+        Nie masz konta? <a href="/register">Zarejestruj się.</a>
     </form>
+    
 {% endblock %}

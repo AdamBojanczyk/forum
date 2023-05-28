@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 30%;
+    margin: 10px;
+    border-radius: 10px;
+    border: 0.1px solid black;
+    font-size: 18px;
+}
+
+input[type="text"] {
+    align-self: left;
+}
+
+input[type="submit"]{
+    width: 25%;
+    border: none;
+    background-color: blue;
+    color: white;
+}
+
+textarea {
+    width: 50%;
+    resize: none;
+    border-radius: 5px;
+    font-size: 18px;
+}

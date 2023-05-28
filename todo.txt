@@ -1,0 +1,6 @@
+autentykacja
+usuwanie postów
+likowanie postów
+dodawanie komentarzy
+ustawianie awataru(np jeden do wyboru z 5)
+data napisania posta

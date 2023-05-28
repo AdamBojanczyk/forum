@@ -7,7 +7,10 @@
 {% block body %}
 <div class="content">
     <div class="navbar">
-        <div class="nav-left"></div>
+        <div class="nav-left">
+            <!-- <button onclick="{{url_for('logout')}}">Log out</button> -->
+            <a href="/logout" class="logout">Wyloguj</a>
+        </div>
         <div class="search-bar-container">
             <form action="" method="post" class="search-bar-form">
                 <input type="text" name="searchBar" class="search-bar">
@@ -16,10 +19,7 @@
         </div>
         <div class="nav-right">
             <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="awatar">
-            <p>User name</p>
-            {% for user in users%}
-            <p>{{user.username}}</p>
-            {% endfor %}
+            <p>{{username}}</p>
         </div>
     </div>
     <div class="main">
@@ -27,14 +27,29 @@
         <div class="posts-container">
 
             <!-- testowe -->
-            <a href="/login">log in</a>
+            <!-- <a href="/login">log in</a>
             <a href="/register">register</a>
-            <a href="{{url_for('users')}}">Lista użytkowników</a>
+            <a href="{{url_for('users')}}">Lista użytkowników</a> -->
             <!--  -->
 
 
-            <div class="add-post"></div>
-            <div class="posts-list"></div>
+
+            <div class="posts-list">
+                <a href="/write_post" class="new-post"><button>Napisz nowy post</button></a>
+                <!-- <a href="/write_post" class="new-post-btn">Napisz nowy post</a> -->
+                {% for item in posts %}
+                <div class="post">
+                    <div class="post-user-info">
+                        <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="">
+                        <p>{{ item.writer }}</p>
+                    </div>
+                    <div class="postValue">
+                        <h3 class="post-title">{{ item.title }}</h3>
+                        <p class="value">{{ item.value }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>    
 </div>

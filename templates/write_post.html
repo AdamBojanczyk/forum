@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/write_post.css') }}">
+{% endblock %}
+
+{% block body %}
+<form action="" method="post">
+    <h1>Napisz swój post</h1>
+    <div class="container">
+        <input type="text" placeholder="Tytuł" name="title">
+        <textarea cols="30" rows="10" placeholder="Zawartość postu" name="value"></textarea>
+        <input type="submit" value="Dodaj post">
+    </div>
+</form>
+{% endblock %}

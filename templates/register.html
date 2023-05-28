@@ -7,11 +7,21 @@
 {% block body %}
     <form action="" method="post" class="form">
         <h1>Zarejestruj się</h1>
-        <input type="text" name="name" placeholder="Name">
+        <!-- <input type="text" name="name" placeholder="Name">
         <input type="text" name="lastName" placeholder="Last Name">
         <input type="text" name="username" placeholder="Username">
         <input type="text" name="email" placeholder="E-mail">
         <input type="password" name="password" placeholder="Password">
-        <input type="submit" name="submit" value="Sign up">
+        <input type="submit" name="submit" value="Sign up"> -->
+
+        {{ form.hidden_tag() }}
+        {{ form.name }}
+        {{ form.surname }}
+        {{ form.username }}
+        {{ form.email }}
+        {{ form.password }}
+        {{ form.submit }}
+
+        Już masz konto? <a href="/login">Zaloguj się</a>
     </form>
 {% endblock %}
