@@ -42,10 +42,21 @@
                     <div class="post-user-info">
                         <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="">
                         <p>{{ item.writer }}</p>
+                        
                     </div>
+                    <p>{{ item.date }}</p>
                     <div class="postValue">
                         <h3 class="post-title">{{ item.title }}</h3>
                         <p class="value">{{ item.value }}</p>
+                    </div>
+                    <div class="post-buttons-container">
+                        <a href="/like/{{ item.id }}">
+                            <div class="heart-container">
+                                <p class="heart"></p>
+                                <p>Like</p>
+                                <p>12</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 {% endfor %}

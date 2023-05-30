@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, EmailField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+from sqlalchemy.sql import func, desc
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -39,16 +40,17 @@ class Posts(db.Model):
     title = db.Column(db.String(30), nullable = False)
     value = db.Column(db.String(500), nullable = False)
     writer = db.Column(db.String(50), nullable = False)
+    date = db.Column(db.DateTime(), server_default=func.now())
 
 
 
 
 class RegisterForm(FlaskForm):
-    name = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Imię"})
-    surname = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Nazwisko"})
-    username = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Nazwa Użytkownika"})
-    email = EmailField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Email"})
-    password = PasswordField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Hasło"})
+    name = StringField(validators=[InputRequired(), Length(min=3, max=30)], render_kw={"placeholder": "Imię"})
+    surname = StringField(validators=[InputRequired(), Length(min=3, max=30)], render_kw={"placeholder": "Nazwisko"})
+    username = StringField(validators=[InputRequired(), Length(min=4, max=30)], render_kw={"placeholder": "Nazwa Użytkownika"})
+    email = EmailField(validators=[InputRequired(), Length(min=4, max=30)], render_kw={"placeholder": "Email"})
+    password = PasswordField(validators=[InputRequired(), Length(min=4, max=30)], render_kw={"placeholder": "Hasło"})
 
     submit = SubmitField("Register")
 
@@ -58,8 +60,8 @@ class RegisterForm(FlaskForm):
             raise ValidationError("That username already exists. Please choose a different one.")
         
 class LoginForm(FlaskForm):
-    username = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
-    password = PasswordField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "password"})
+    username = StringField(validators=[InputRequired(), Length(min=4, max=30)], render_kw={"placeholder": "Nazwa Użytkownika"})
+    password = PasswordField(validators=[InputRequired(), Length(min=4, max=30)], render_kw={"placeholder": "Hasło"})
 
     submit = SubmitField("Login")
 
@@ -71,7 +73,7 @@ def index():
         return redirect("/login")
     else:
         name = request.cookies.get('user')
-        posts = Posts.query.all()
+        posts = Posts.query.order_by(desc(Posts.date)).all()
         return render_template('index.html', username = name, posts = posts)
 
 @app.route("/login", methods=['POST', 'GET'])
@@ -109,24 +111,6 @@ def register():
             return 'There was an issue registering you'
     else:
         return render_template('register.html', form=form)
-
-    # if request.method == 'POST':
-    #     name = request.form['name']
-    #     lastname = request.form['lastName']
-    #     username = request.form['username']
-    #     email = request.form['email']
-    #     password = request.form['password']
-    #     newUser = User(name = name, lastname = lastname, username = username, email = email, password = password)
-        
-    #     try:
-    #         db.session.add(newUser)
-    #         db.session.commit()
-            
-    #         return render_template('index.html')
-    #     except:
-    #         return 'There was an issue registering you'
-    # else:
-    #     return render_template('register.html', form=form)
     
 @app.route("/write_post", methods=['POST', 'GET'])
 def write_post():
@@ -163,6 +147,10 @@ def logout():
 def users():
     users = User.query.all()
     return render_template('users.html', users=users)
+
+@app.route("/like")
+def like():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     with app.app_context():

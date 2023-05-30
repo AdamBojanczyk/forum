@@ -1,6 +1,15 @@
-autentykacja
+-niepoprawne wyświetlanie się długich postów
+-likowanie postów
+-wchodzenie i edytowanie profilów
+
+-Możliwość modyfikacji profilu oraz możliwość dodawania zdjęć do postów
+-zbyt minimalistyczna oprawa graficzna
+autentykacja - jakiś komunikat zwrotny do użytkownika
 usuwanie postów
-likowanie postów
-dodawanie komentarzy
 ustawianie awataru(np jeden do wyboru z 5)
-data napisania posta
+----------------------------------------------------------------------------------------
+
+
+-zrobienie # które działały w taki soposób że, podczas pisania posta możemy dodać # ( np. z grona dostępnych ) a potem za pomocą 
+górnego paska moglibyśmy wyszukiwać za pomocą ich 
+-Naprawić trzeba wyszukiwanie
