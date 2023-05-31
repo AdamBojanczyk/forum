@@ -1,12 +1,14 @@
--niepoprawne wyświetlanie się długich postów
--likowanie postów
--wchodzenie i edytowanie profilów
+-awatary
+-imie i nazwisko zamiast username w postach
 
--Możliwość modyfikacji profilu oraz możliwość dodawania zdjęć do postów
--zbyt minimalistyczna oprawa graficzna
-autentykacja - jakiś komunikat zwrotny do użytkownika
-usuwanie postów
-ustawianie awataru(np jeden do wyboru z 5)
+-autentykacja - jakiś komunikat zwrotny do użytkownika
+-lista znajomych
+-wchodzenie i edytowanie profilów
+-usuwanie postów
+
+-likowanie postów
+-możliwość dodawania zdjęć do postów
+
 ----------------------------------------------------------------------------------------
 
 

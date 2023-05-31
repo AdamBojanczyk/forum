@@ -5,63 +5,87 @@
 {% endblock %}
 
 {% block body %}
-<div class="content">
-    <div class="navbar">
-        <div class="nav-left">
-            <!-- <button onclick="{{url_for('logout')}}">Log out</button> -->
-            <a href="/logout" class="logout">Wyloguj</a>
+<div class="navbar">
+    <div class="logo">
+        <a href="/">Forum</a>
+    </div>
+    <div class="navbar-middle">
+        <a href="/write_post" class="new-post">Napisz nowy post</a>
+    </div>
+    <div class="navbar-right">
+        <div class="img-container">
+            <div class="avatar" data-label="DC"></div>
         </div>
-        <div class="search-bar-container">
-            <form action="" method="post" class="search-bar-form">
-                <input type="text" name="searchBar" class="search-bar">
-                <button type="submit" class="search-bar-submit"><img src="{{ url_for('static', filename='images/search.png') }}" alt=""></button>
-            </form>
-        </div>
-        <div class="nav-right">
-            <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="awatar">
-            <p>{{username}}</p>
+        <div class="username">
+
+            <p>{{ user.name}} {{ user.lastname }}</p>
         </div>
     </div>
-    <div class="main">
-        <div class="left-container"></div>
-        <div class="posts-container">
+</div>
 
-            <!-- testowe -->
-            <!-- <a href="/login">log in</a>
-            <a href="/register">register</a>
-            <a href="{{url_for('users')}}">Lista użytkowników</a> -->
-            <!--  -->
+<div class="flex-container">
+    <a href="/logout" class="logout">Wyloguj</a>
 
+    <div class="sidebar-left">
 
+    </div>
+    <div class="middle-container">
+        <div class="write-post">
 
-            <div class="posts-list">
-                <a href="/write_post" class="new-post"><button>Napisz nowy post</button></a>
-                <!-- <a href="/write_post" class="new-post-btn">Napisz nowy post</a> -->
-                {% for item in posts %}
-                <div class="post">
-                    <div class="post-user-info">
-                        <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="">
-                        <p>{{ item.writer }}</p>
-                        
-                    </div>
-                    <p>{{ item.date }}</p>
-                    <div class="postValue">
-                        <h3 class="post-title">{{ item.title }}</h3>
-                        <p class="value">{{ item.value }}</p>
-                    </div>
-                    <div class="post-buttons-container">
-                        <a href="/like/{{ item.id }}">
-                            <div class="heart-container">
-                                <p class="heart"></p>
-                                <p>Like</p>
-                                <p>12</p>
-                            </div>
-                        </a>
-                    </div>
+        </div>
+
+        {% for item in posts %}
+        <div class="post">
+            <div class="post-top">
+                <div class="avatar-container">
+                    <div class="avatar" data-label="CD"></div>
                 </div>
-                {% endfor %}
+                <div class="post-middle">
+                    <div class="creator">{{ item.writer }}</div>
+                    <div class="date">{{ item.date }}</div>
+                </div>
+            </div>
+            <div class="content">
+                {{ item.value }}
+            </div>
+            <div class="photos">
+
             </div>
         </div>
-    </div>    
+        {% endfor %}
+
+
+    </div>
+    <div class="sidebar-right">
+        <div class="friend-top">
+            <h4>Znajomi</h4>
+        </div>
+        <div class="friends-list">
+            <div class="friend">
+                <div class="friend-photo">
+                    <div class="avatar" data-label="DC"></div>
+
+                </div>
+                <p>
+                    Imie nazwisko
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    const avatars = document.querySelectorAll(".avatar");
+
+    avatars.forEach((a) => {
+    const charCodeRed = a.dataset.label.charCodeAt(0);
+    const charCodeGreen = a.dataset.label.charCodeAt(1) || charCodeRed;
+
+    const red = Math.pow(charCodeRed, 7) % 200;
+    const green = Math.pow(charCodeGreen, 7) % 200;
+    const blue = (red + green) % 200;
+
+    a.style.background = `rgb(${red}, ${green}, ${blue})`;
+    });
+    </script>
 {% endblock %}

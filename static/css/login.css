@@ -1,4 +1,18 @@
+* {
+    color: white;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
 body {
+    margin: 0;
+    background-color: #18191a;
+    width: 100%;
+    height: 100%;
+
     display: flex;
     justify-content: center;
     padding-top: 2em;
@@ -17,31 +31,27 @@ input {
     width: 40%;
     height: 3%;
     border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: #3a3b3c;
+    border: none;
     font-size: 16px;
     font-weight: 400;
+    color: white;
 }
 
 input[type="submit"] {
     border: none;
-    background-color: blue;
+    background-color: #18191a;
     color: white;
     height: 5%;
     width: 256px;
     margin-bottom: 15px;
-    border-style: solid;
-    border-color: blue;
-    border-width: 2px;
+    border: 1px solid #3a3b3c;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
 
 input[type="submit"]:hover {
-    background-color: white;
-    color: blue;
-    border-style: solid;
-    border-color: blue;
-    border-width: 2px;
+    background-color: #3a3b3c;
 }
 
 input:focus {
