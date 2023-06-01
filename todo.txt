@@ -1,5 +1,4 @@
 -awatary
--imie i nazwisko zamiast username w postach
 
 -autentykacja - jakiś komunikat zwrotny do użytkownika
 -lista znajomych

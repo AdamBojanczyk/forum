@@ -69,10 +69,9 @@ def index():
     if not 'user' in request.cookies:
         return redirect("/login")
     else:
-        email = request.cookies.get('user')
-        user = User.query.filter_by(email=email).first()
+        username = request.cookies.get('user')
         posts = Posts.query.order_by(desc(Posts.date)).all()
-        return render_template('index.html', user = user, posts = posts)
+        return render_template('index.html', username = username, posts = posts)
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
@@ -84,7 +83,10 @@ def login():
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
 
-                username = request.form['email']
+                email = request.form['email']
+                user_data = User.query.filter_by(email=email).first()
+                username = user_data.name + ' ' + user_data.lastname
+                print(username)
                 resp = make_response(redirect('/'))
                 resp.set_cookie('user', username)
                 return resp
@@ -125,7 +127,7 @@ def write_post():
         else:
             writer = request.cookies.get('user')
 
-        newPost = Posts(content = content, writer = writer)
+            newPost = Posts(content = content, writer = writer)
 
         try:
             db.session.add(newPost)
